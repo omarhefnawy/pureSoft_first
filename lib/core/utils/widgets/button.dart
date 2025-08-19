@@ -5,7 +5,8 @@ class Button extends StatelessWidget {
   final String text;
   final double width,height;
   final void Function() onTap;
-  const Button({super.key,required this.text,required this.width,required this.height,required this.onTap});
+  final  Color? color;
+  const Button({super.key,required this.text,required this.width,required this.height,required this.onTap,this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class Button extends StatelessWidget {
         width: width,
         height: height,
        decoration: BoxDecoration(
-         color: AppColors.primary,
+         color: color??AppColors.primary,
          borderRadius: BorderRadius.circular(20),
        ),
         child: Center(child: Text(text,style: GoogleFonts.poppins(color: Colors.white,fontSize: 16),)),

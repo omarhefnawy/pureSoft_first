@@ -3,9 +3,10 @@ import 'package:fruits_task/core/utils/widgets/custom_text.dart';
 import 'package:fruits_task/models/sellerModel.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+
 class SellereContent extends StatefulWidget {
   final SellerModel sellerModel;
-  const SellereContent({super.key,required this.sellerModel});
+  const SellereContent({super.key, required this.sellerModel});
 
   @override
   State<SellereContent> createState() => _SellereContentState();
@@ -14,9 +15,19 @@ class SellereContent extends StatefulWidget {
 class _SellereContentState extends State<SellereContent> {
   @override
   Widget build(BuildContext context) {
-    double h= AppResponsive.bodyHeightWithBottomNav(context);
+    double h = AppResponsive.bodyHeightWithBottomNav(context);
     double w = AppResponsive.width(context);
-    double cardHeight = h * 0.18;
+    var orientation = MediaQuery.of(context).orientation;
+
+    // تكبير الكونتينر في اللاندسكيب
+    double cardHeight =
+    orientation == Orientation.landscape ? h * 0.39 : h * 0.18;
+
+    // تصغير الفونت شوية في اللاندسكيب
+    double nameFontSize =
+    orientation == Orientation.landscape ? w * 0.017 : w * 0.045;
+    double smallFontSize =
+    orientation == Orientation.landscape ? w * 0.018 : w * 0.035;
 
     return Card(
       color: Colors.white,
@@ -46,33 +57,35 @@ class _SellereContentState extends State<SellereContent> {
                           children: [
                             CustomText(
                               text: widget.sellerModel.name,
-                              size: w * 0.045,
+                              size: nameFontSize,
                             ),
                             CustomText(
                               text: "${widget.sellerModel.reviews}",
-                              size: w * 0.035,
-                              color: Color(0xff656565),
+                              size: smallFontSize,
+                              color: const Color(0xff656565),
                             ),
                           ],
                         ),
-                        Gap(h * 0.01),
                         CustomText(
-                          text: "Delivery Charges :  ${widget.sellerModel.charge}",
-                          color: Color(0xff656565),
-                          size: w * 0.035,
+                          text:
+                          "Delivery Charges :  ${widget.sellerModel.charge}",
+                          color: const Color(0xff656565),
+                          size: smallFontSize,
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: widget.sellerModel.opened ? "Opened" : "Closed",
-                              size: w * 0.035,
-                              color: Color(0xff00BB1A),
+                              text: widget.sellerModel.opened
+                                  ? "Opened"
+                                  : "Closed",
+                              size: smallFontSize,
+                              color: const Color(0xff00BB1A),
                             ),
                             CustomText(
                               text: "${widget.sellerModel.space} KM",
-                              size: w * 0.035,
+                              size: smallFontSize,
                             ),
                           ],
                         ),
@@ -86,6 +99,5 @@ class _SellereContentState extends State<SellereContent> {
         ),
       ),
     );
-
   }
 }

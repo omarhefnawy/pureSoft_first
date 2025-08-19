@@ -10,7 +10,8 @@ class CustomText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(text,maxLines: max,overflow: overFlow,style: GoogleFonts.poppins(
+    return Text(
+      text,maxLines: max,overflow: overFlow,style: GoogleFonts.poppins(
       fontWeight: FontWeight.bold,
       fontSize: size,
       color: color,

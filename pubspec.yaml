@@ -39,6 +39,7 @@ dependencies:
   google_fonts:
   svg_flutter:
   font_awesome_flutter:
+  google_nav_bar: ^5.0.7
 
 
 dev_dependencies:
